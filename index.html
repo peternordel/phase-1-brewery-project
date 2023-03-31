@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Toy Tale</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="brewery-header">
+      <img
+        src="brewery header image"
+        alt="brewery-header"
+      />
+    </div>
+
+    <div class="container">
+      <form class="add-brewery-form">
+        <h3>Create a toy!</h3>
+
+        <input
+          type="text"
+          name="name"
+          value=""
+          placeholder="Enter a brewery's name..."
+          class="input-text"
+        />
+        <br />
+        <input
+          type="text"
+          name="image"
+          value=""
+          placeholder="Enter a brewery's image URL..."
+          class="input-text"
+        />
+        <br />
+        <input
+          type="submit"
+          name="submit"
+          value="Create Brewery"
+          class="submit"
+        />
+      </form>
+    </div>
+    <p style="text-align:center">
+      Are we missing a brewery? <button id="new-brewery-btn">Add a new one!</button>
+    </p>
+
+    <div id="brewery-collection"></div>
+    <script type="text/javascript" src="src/index.js"></script>
+  </body>
+</html>
