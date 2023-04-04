@@ -151,22 +151,22 @@ fetch(`https://api.openbrewerydb.org/v1/breweries?by_dist=${latitude},${longitud
 
 
 
-             // create an img element for the brewery image
-            // const image = document.createElement("img");
-            // image.src = brewery.image;
-            // card.appendChild(image);
+            create an img element for the brewery image
+            const image = document.createElement("img");
+            image.src = brewery.image;
+            card.appendChild(image);
 
 
-//  let isVis = false;
-//  document.querySelector('.tooltip').addEventListener('mouseover', handleMouseover)
-//  function handleMouseover() {
-//  document.querySelector('.tooltiptext').style.visibility = isVis ? 'hidden' : 'visible'
-//  }
-//  if(isVis) {
-//  document.querySelector('.tooltiptext').style.visibility = 'hidden'
-//  }
-//  else {
-//  document.querySelector('.tooltiptext').style.visibility = 'visible'     
-//  }
-//  isVis = !isVis;
+  let isVis = false;
+  document.querySelector('.tooltip').addEventListener('mouseover', handleMouseover)
+  function handleMouseover() {
+  document.querySelector('.tooltiptext').style.visibility = isVis ? 'hidden' : 'visible'
+  }
+  if(isVis) {
+  document.querySelector('.tooltiptext').style.visibility = 'hidden'
+  }
+  else {
+  document.querySelector('.tooltiptext').style.visibility = 'visible'     
+  }
+  isVis = !isVis;
 */
