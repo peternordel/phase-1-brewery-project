@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Phase 1 Brewery Project</title>
+    <title>Brew Time</title>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -62,7 +62,7 @@
 
     <div class="container">
       <form class="add-brewery-form">
-        <h3>Create a brewery!</h3>
+        <h3>Add a Brewery</h3>
         <input
           type="text"
           name="name"
@@ -154,7 +154,24 @@
       Are we missing a brewery? <button id="new-brewery-btn">Add a new one!</button>
     </p>
 
-    <div id="brewery-collection"></div>
+    <div id="brewery-collection">
+      <div class="brewery-container" style="border: 1px solid black;">
+        <div class="brewery-card">
+          <img src="https://brewery-image-url" alt="brewery-image" />
+          <h3>Brewery Name</h3>
+          <p>Description of brewery...</p>
+          <div class="likes-container">
+            <button class="like-btn">Like</button>
+            <span class="like-count">0 likes</span>
+          </div>
+          <form class="comment-form">
+            <input type="text" placeholder="Add a comment..." />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+    
     <script type="text/javascript" src="src/index.js"></script>
   </body>
 </html>
