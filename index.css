@@ -9,3 +9,10 @@
     vertical-align: top;
     text-align: center;
   }
+.add-brewery-form {
+    visibility: hidden;
+}
+
+#add-new-brewery {
+    display: none;
+}
