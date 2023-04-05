@@ -1,73 +1,54 @@
 {
-  "brewery": [
+  "comments": [
     {
-      "id": "5128df48-79fc-4f0f-8b52-d06be54d0cec",
-      "name": "(405) Brewing Co",
-      "brewery_type": "micro",
-      "address_1": "1716 Topeka St",
-      "address_2": null,
-      "address_3": null,
-      "city": "Norman",
-      "state_province": "Oklahoma",
-      "postal_code": "73069-8224",
-      "country": "United States",
-      "longitude": "-97.46818222",
-      "latitude": "35.25738891",
-      "phone": "4058160490",
-      "website_url": "http://www.405brewing.com",
-      "state": "Oklahoma",
-      "street": "1716 Topeka St",
-      "likes": 1
+      "id": 1,
+      "breweryId": "dacd265f-723f-4318-bbed-e747655487bb",
+      "content": "What a cute dog!"
     },
     {
-      "id": "9c5a66c8-cc13-416f-a5d9-0a769c87d318",
-      "name": "(512) Brewing Co",
-      "brewery_type": "micro",
-      "address_1": "407 Radam Ln Ste F200",
-      "address_2": null,
-      "address_3": null,
-      "city": "Austin",
-      "state_province": "Texas",
-      "postal_code": "78745-1197",
-      "country": "United States",
-      "longitude": null,
-      "latitude": null,
-      "phone": "5129211545",
-      "website_url": "http://www.512brewing.com",
-      "state": "Texas",
-      "street": "407 Radam Ln Ste F200",
-      "likes": 1
+      "id": 2,
+      "breweryId": "dacd265f-723f-4318-bbed-e747655487bb",
+      "content": "He's got a nose for bugs!"
     },
     {
-      "id": "ef970757-fe42-416f-931d-722451f1f59c",
-      "name": "10 Barrel Brewing Co",
-      "brewery_type": "large",
-      "address_1": "1501 E St",
-      "address_2": null,
-      "address_3": null,
-      "city": "San Diego",
-      "state_province": "California",
-      "postal_code": "92101-6618",
-      "country": "United States",
-      "longitude": "-117.129593",
-      "latitude": "32.714813",
-      "phone": "6195782311",
-      "website_url": "http://10barrel.com",
-      "state": "California",
-      "street": "1501 E St",
-      "likes": 2
+      "id": 3,
+      "breweryId": "8d07cc1f-6941-4ee7-8fbe-6ce91eb7b098",
+      "content": "Woof!"
     },
     {
-      "comment": "A",
-      "id": "hv82Stf"
+      "breweryId": "8d07cc1f-6941-4ee7-8fbe-6ce91eb7b098",
+      "content": "asdf",
+      "id": 4
     },
     {
-      "comment": "A",
-      "id": "706L5v1"
-    },
+      "breweryId": "8d07cc1f-6941-4ee7-8fbe-6ce91eb7b098",
+      "content": "asdf",
+      "id": 5
+    }
+  ],
+  "likes": [
     {
-      "comment": "Add a comment",
-      "id": "sxjPwkr"
+      "id": 0,
+      "dacd265f-723f-4318-bbed-e747655487bb": 2,
+      "8d07cc1f-6941-4ee7-8fbe-6ce91eb7b098": 5,
+      "018b3e0a-ea27-4f11-acab-16b39607939e": 1,
+      "1988eb86-f0a2-4674-ba04-02454efa0d31": 0,
+      "e1daa6b8-1bfe-4833-bb30-908c58eb8ec2": 0,
+      "4b677b60-fef1-42e2-90ef-dadc1bd7fb06": 0,
+      "8a058b3f-9a57-469d-9f1f-c31c3ae064a5": 0,
+      "1f0405ff-3d96-47e7-90ee-a1bc5764149b": 0,
+      "c3d41248-80ed-4c14-8078-c100308e5450": 0,
+      "90ea24ab-7f6b-4961-95ee-496ba24e62f3": 0,
+      "8eb28987-4959-4f49-b410-757b110e5356": 0,
+      "3c4ee320-98f6-4949-9ec1-8a24f16619d8": 0,
+      "6eacc4a0-3173-4e08-901b-6135ccf60690": 0,
+      "eb3bca03-12e0-49b2-ae4f-42616521289c": 0,
+      "11977488-1872-4b1b-9e28-f9c68f9db873": 0,
+      "eea8a695-5e5e-4eb4-8c36-38ef70799787": 0,
+      "a235f4c4-1a4f-4ef7-bbaf-b95142e2bd44": 0,
+      "5d495cd7-11f9-4a81-95de-71b96deca5dd": 0,
+      "fd13429b-1eee-45ae-818a-bd54b099f845": 0,
+      "d41989d3-e3a4-47c0-a0eb-cdcfe61a1066": 0
     }
   ]
 }

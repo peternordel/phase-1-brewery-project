@@ -1,182 +1,4 @@
-const breweryCollection = document.getElementById("brewery-collection");
-
-
-const latitude = 39.7427
-const longitude = -104.8129
-const numberToDisplay = 10
-
-fetch(`https://api.openbrewerydb.org/v1/breweries?by_dist=${latitude},${longitude}&per_page=${numberToDisplay}`)
-
-    .then(resp => resp.json())
-    .then(data => {
-
-        data.forEach(brewery => {
-            createCard(brewery);
-        });
-
-        function createCard(brewery) {
-            const card = document.createElement("div");
-            card.classList.add("card");
-            breweryCollection.appendChild(card);
-            addBreweryName(card, brewery.name);
-            addBreweryAddress(card, brewery.address_1, brewery.city, brewery.state_province, brewery.postal_code);
-            addBreweryType(card, brewery.brewery_type);
-            addBreweryWebsite(card, brewery.website_url);
-            addBreweryPhone(card, brewery.phone);
-            addBreweryLikes(card, brewery.likes);
-            addLikeButton(card);
-            addCommentSection(card);
-        }
-
-        function addBreweryName(card, name) {
-            const nameElement = document.createElement("h2");
-            nameElement.textContent = name;
-            card.appendChild(nameElement);
-        }
-
-        function addBreweryAddress(card, address_1, city, state_province, postal_code) {
-            const addressElement = document.createElement("p");
-            addressElement.textContent = `${address_1}, ${city}, ${state_province} ${postal_code}`;
-            card.appendChild(addressElement);
-        }
-
-        function addBreweryType(card, type) {
-            const typeElement = document.createElement("p");
-            typeElement.textContent = `Type: ${type}`;
-            card.appendChild(typeElement);
-        }
-
-        function addBreweryWebsite(card, website_url) {
-            const websiteElement = document.createElement("p");
-            websiteElement.innerHTML = `<a href="${website_url}" target="_blank">${website_url}</a>`;
-            card.appendChild(websiteElement);
-        }
-
-        function addBreweryPhone(card, phone) {
-            const phoneElement = document.createElement("p");
-            phoneElement.textContent = `Phone: ${phone}`;
-            card.appendChild(phoneElement);
-        }
-
-        function addBreweryLikes(card, likes) {
-            const likesElement = document.createElement("p");
-            likesElement.textContent = `${likes} Likes`;
-            card.appendChild(likesElement);
-        }
-
-        function addLikeButton(card) {
-            const likeBtn = document.createElement("button");
-            likeBtn.textContent = "Like";
-            likeBtn.className = "like-btn";
-            card.appendChild(likeBtn);
-        }
-
-        function addCommentSection(card) {
-            const commentSection = document.createElement("div");
-            commentSection.className = "comment-section";
-            card.appendChild(commentSection);
-            addCommentInput(commentSection);
-            addCommentButton(commentSection);
-            addComments(commentSection);
-        }
-
-        function addCommentInput(commentSection) {
-            const commentInput = document.createElement("input");
-            commentInput.type = "text";
-            commentInput.placeholder = "Add a comment...";
-            commentInput.className = "comment-input";
-            commentSection.appendChild(commentInput);
-        }
-
-        function addCommentButton(commentSection) {
-            const commentBtn = document.createElement("button");
-            commentBtn.textContent = "Comment";
-            commentBtn.className = "comment-btn";
-            commentSection.appendChild(commentBtn);
-        }
-
-        function addComments(commentSection) {
-            const comments = document.createElement("div");
-            comments.className = "comments";
-            commentSection.appendChild(comments);
-        }
-    })
-
-   /* commentBtn.addEventListener("click", () => {
-        const commentBtn = commentInput.value;
-    
-        if (comment) {
-            // add comment to the API
-            fetch(`http://localhost:3000/brewery/${brewery.id}/comments`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    comment: comment
-                })
-            })
-                .then(resp => resp.json())
-                .then(data => {
-                }
-                )
-            }
-        }
-    )
-
-
-    //add event listeners for like button and comment button
-    likeBtn.addEventListener("click", () => {
-        const likeBtn = like
-    
-    // update like count 
-    fetch(`http://localhost:3000/brewery/${brewery.id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            likes: brewery.likes + 1
-        })
-    })
-        .then(resp => resp.json())
-        .then(data => {
-            // update like count in the DOM
-            likes.textContent = `${data.likes} Likes`;
-            // update the brewery object with the new data
-            brewery.likes = data.likes;
-        })
-
-});
-
-
-
-            create an img element for the brewery image
-            const image = document.createElement("img");
-            image.src = brewery.image;
-            card.appendChild(image);
-
-
-  let isVis = false;
-  document.querySelector('.tooltip').addEventListener('mouseover', handleMouseover)
-  function handleMouseover() {
-  document.querySelector('.tooltiptext').style.visibility = isVis ? 'hidden' : 'visible'
-  }
-  if(isVis) {
-  document.querySelector('.tooltiptext').style.visibility = 'hidden'
-  }
-  else {
-  document.querySelector('.tooltiptext').style.visibility = 'visible'     
-  }
-  isVis = !isVis;
-*/
-
-let currentLat;
-let currentLon;
-//do we need current id declared globally?
-let numberToDisplay;
-let newBrewFormIsVis = false;
-let ipLocation = false;
+const breweryCollection = document.getElementById('brewery-collection')
 
 const defaultLocation = {
     lat: 39.756454149999996,
@@ -190,10 +12,162 @@ const defaultLocation = {
     }
 }
 
-showCurrentLocation(reconcileLocation(defaultLocation));
+let currentId;
+let currentLatitude;
+let currentLongitude;
+let numberToDisplay = 10;
+let newBrewFormIsVis = false;
+let ipLocation = false;
+let allComments;
+let allLikes;
+
+fetch(`http://localhost:3000/comments/`)
+.then(resp => resp.json())
+.then(data => {
+    allComments = data;
+    fetchLikes();
+})
+
+function fetchLikes() {
+    fetch(`http://localhost:3000/likes/`)
+    .then(resp => resp.json())
+    .then(data => {
+        allLikes = data[0];
+        showCurrentLocation(reconcileLocation(defaultLocation));
+    })
+}
+
+function fetchData() {
+    fetch(`https://api.openbrewerydb.org/v1/breweries?by_dist=${currentLatitude},${currentLongitude}&per_page=${numberToDisplay}`)
+    .then(resp => resp.json())
+    .then(data => {
+        breweryCollection.replaceChildren()
+        data.forEach(brewery => createCard(brewery))
+        fetch('http://localhost:3000/likes/0', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(allLikes)
+        })
+    })
+}
+
+function createCard(brewery) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    currentId = brewery.id;
+
+    const nameElement = document.createElement("h2");
+    nameElement.textContent = brewery.name;
+    const phoneTooltip = document.createElement('p')
+    phoneTooltip.textContent = brewery.phone
+    phoneTooltip.className = 'tooltip'
+
+    nameElement.addEventListener('mouseover', () => {
+        phoneTooltip.style.visibility = 'visible';
+    })
+    nameElement.addEventListener('mouseout', () => {
+        phoneTooltip.style.visibility = 'hidden';
+    })
+
+    const addressElement = document.createElement("p");
+    addressElement.textContent = `${brewery.address_1}, ${brewery.city}, ${brewery.state_province} ${brewery.postal_code}`;
+
+    const typeElement = document.createElement("p");
+    typeElement.textContent = `Type: ${brewery.brewery_type}`;
+
+    const websiteElement = document.createElement("a");
+    const websitePara = document.createElement('p');
+    websiteElement.href = brewery.website_url;
+    websiteElement.textContent = brewery.website_url;
+    websitePara.append(websiteElement);
+
+    const phoneElement = document.createElement("p");
+    phoneElement.textContent = `Phone: ${brewery.phone}`;
+
+    const likesElement = document.createElement("p");
+    if(!(`${brewery.id}` in allLikes)) {
+        allLikes[brewery.id] = 0
+    }
+    likesElement.textContent = `${allLikes[brewery.id]} likes     `
+
+    const likeBtn = document.createElement("button");
+    likeBtn.id = `like-btn-${currentId}`;
+    likeBtn.textContent = "Like";
+    likeBtn.addEventListener('click', e => {
+        e.stopPropagation()
+        e.preventDefault()
+        allLikes[brewery.id]++
+
+        fetch('http://localhost:3000/likes/0', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(allLikes)
+        })
+        .then(likesElement.textContent = `${allLikes[brewery.id]} likes`)
+    })
+
+    const commentSection = document.createElement("div");
+    commentSection.className = "comment-section";
+    const commentList = document.createElement('ul');
+    commentList.id = `comment-list-${currentId}`
+
+    const commentForm = document.createElement("form");
+    const commentInput = document.createElement('input');
+    const commentSubmit = document.createElement('button');
+    commentForm.className = "comment-form";
+    commentForm.id = currentId;
+    commentInput.type = 'text'
+    commentInput.name = 'comment';
+    commentInput.placeholder = 'Add a comment...';
+    commentSubmit.textContent = "Comment";
+    commentSubmit.type = 'submit';
+    commentForm.append(commentInput, commentSubmit)
+    commentForm.addEventListener('submit', e => handleNewComment(e))
+    commentSection.append(commentList, commentForm);
+
+    card.append(nameElement, phoneTooltip, addressElement, typeElement, websiteElement, phoneElement, likesElement, likeBtn, commentSection);
+    breweryCollection.appendChild(card);
+
+    for(const comment of allComments) {
+        if(comment.breweryId === brewery.id) {
+            renderComment(comment)
+        }
+    }
+}
+
+function renderComment(comment) {
+    const commentList = document.getElementById(`comment-list-${comment.breweryId}`);
+    const singleComment = document.createElement("li");
+    singleComment.textContent = comment.content;
+    commentList.appendChild(singleComment)
+}
+
+function handleNewComment(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    newCommentObj = {
+        breweryId: e.target.id,
+        content: e.target['comment'].value
+    }
+
+    fetch('http://localhost:3000/comments', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(newCommentObj)
+    })
+    .then(renderComment(newCommentObj))
+}
 
 function reconcileLocation(location) {
-    debugger;
     //reconfigure object received from default IP address for use in this program
     if(ipLocation) {
         location.lat = location.latitude
@@ -220,62 +194,21 @@ function reconcileLocation(location) {
 
 function showCurrentLocation(location) {
     const currentLocationData = document.getElementById('current-location-data')
-    currentLat = location.lat
-    currentLon = location.lon
+    currentLatitude = location.lat
+    currentLongitude = location.lon
+    debugger;
     currentLocationData.textContent = `Currently displaying results for: ${location.city}, ${location.state_province} ${location.postal_code}`
-    //displayBreweries(currentLat, currentLon)
+    fetchData(currentLatitude, currentLongitude)
 }
 
 document.querySelector('.custom-location-form').addEventListener('submit', e => {
     e.preventDefault()
-    showCurrentLocation(reconcileLocation(fetchFromOSM(e.target['street'].value, e.target['city'].value, e.target['state'].value, e.target['zip'].value)))
+    fetchFromOSM(e.target['street'].value, e.target['city'].value, e.target['state'].value, e.target['zip'].value)
     e.target.reset()
 })
 
 function fetchFromOSM(street, city, state, zip) {
     fetch(`https://nominatim.openstreetmap.org/search.php?street=${street}&city=${city}&state=${state}&postalcode=${zip}&format=jsonv2&addressdetails=1`)
     .then(resp => resp.json())
-    .then(validAddress => validAddress[0])
-}
-
-document.getElementById('new-brewery-btn').addEventListener('click', () => {
-    newBrewFormIsVis = !newBrewFormIsVis
-    document.querySelector('.add-brewery-form').style.visibility = newBrewFormIsVis ? 'visible' : 'hidden'
-})
-
-//add new brewery form functionality
-document.querySelector('.add-brewery-form').addEventListener('submit', e => {
-    e.preventDefault()
-
-    const streetEntered = `${e.target['street1'].value} ${e.target['street2'].value}`
-    const newBreweryObject = reconcileLocation(fetchFromOSM(streetEntered, e.target['city'].value, e.target['state'].value, e.target['zip'].value))
-    newBreweryObject.name = e.target['name'].value
-    newBreweryObject.brewery_type = e.target['type'].value
-    newBreweryObject.phone = e.target['phone'].value
-    newBreweryObject.website_url = e.target['website_url'].value
-
-    addBreweryToDatabase(newBreweryObject)
-
-    //when we are displaying, we'll need to display the 10 closest, and then check to see if any of the new breweries in our local database are closer, then sort all entries (including the new one) and then delete the last child
-})
-
-function addBreweryToDatabase(newBreweryObject) {
-
-    debugger;
-        // //post new brewery object to our backend
-        // fetch('http://localhost:3000/brewery', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify(newBreweryObject)
-        // })
-}
-
-function displayBreweries(longitude, latitude, numberToDisplay = 10) {
-    fetch(`https://api.openbrewerydb.org/v1/breweries?by_dist=${latitude},${longitude}&per_page=${numberToDisplay}`)
-
-    //reconcile versus entered breweries, make an array of the 10 closest based on the above fetch and that database (of entered breweries)
-    //BEAU'S CODE
+    .then(validAddress => showCurrentLocation(reconcileLocation(validAddress[0])))
 }

@@ -59,105 +59,10 @@
         />
       </form>
     </div>
-
-    <div class="container">
-      <form class="add-brewery-form">
-        <h3>Add a Brewery</h3>
-        <input
-          type="text"
-          name="name"
-          value=""
-          placeholder="Name of brewery"
-          class="input-text"
-        />
-        <br />
-        <input
-          type="text"
-          name="type"
-          value=""
-          placeholder="micro or large"
-          class="input-text"
-        />
-        <br />
-        <input
-          type="text"
-          name="website_url"
-          value=""
-          placeholder="Website"
-          class="input-text"
-        />
-        <br />
-        <input
-          type="text"
-          name="phone"
-          value=""
-          placeholder="Phone"
-          class="input-text"
-        />
-        <br />
-        <input
-          type="text"
-          name="street1"
-          value=""
-          placeholder="Address Line 1"
-          size="34"
-          class="input-text"
-        />
-        <br />
-        <input
-          type="text"
-          name="street2"
-          value=""
-          placeholder="Address Line 2"
-          size="34"
-          class="input-text"
-        />
-        <br />
-        <input
-          type="text"
-          name="city"
-          value=""
-          placeholder="City"
-          size="15"
-          class="input-text"
-          required
-        />
-        <input
-          type="text"
-          name="state"
-          value=""
-          placeholder="State"
-          maxlength="2"
-          size="2"
-          class="input-text"
-          required
-        />
-        <input
-          type="text"
-          name="zip"
-          value=""
-          placeholder="ZIP"
-          maxlength="5"
-          size="5"
-          class="input-text"
-        />
-        <br />
-        <input
-          type="submit"
-          name="submit"
-          value="Create a Brewery"
-          class="submit"
-        />
-      </form>
-    </div>
-    <p id="add-new-brewery" style="text-align:center">
-      Are we missing a brewery? <button id="new-brewery-btn">Add a new one!</button>
-    </p>
-
     <div id="brewery-collection">
       <div class="brewery-container" style="border: 1px solid black;">
         <div class="brewery-card">
-          <img src="https://brewery-image-url" alt="brewery-image" />
+          <img src="./src/brewery-logo.jpg" alt="brewery-image" />
           <h3>Brewery Name</h3>
           <p>Description of brewery...</p>
           <div class="likes-container">
@@ -166,7 +71,7 @@
           </div>
           <form class="comment-form">
             <input type="text" placeholder="Add a comment..." />
-            <input type="submit" value="Submit" />
+            <button type="submit" value="Submit" />
           </form>
         </div>
       </div>
