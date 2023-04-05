@@ -212,3 +212,112 @@ function fetchFromOSM(street, city, state, zip) {
     .then(resp => resp.json())
     .then(validAddress => showCurrentLocation(reconcileLocation(validAddress[0])))
 }
+
+/*
+commentBtn.addEventListener("click", () => {
+    const commentBtn = commentInput.value;
+    
+        if (comment) {
+            // add comment to the API
+            fetch(`http://localhost:3000/brewery/${brewery.id}/comments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    comment: comment
+                })
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                }
+                )
+            }
+        }
+    )
+
+/*
+    //add event listeners for like button and comment button
+    likeBtn.addEventListener("click", () => {
+        const likeBtn = like
+    
+    // update like count 
+    fetch(`http://localhost:3000/brewery/${brewery.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            likes: brewery.likes + 1
+        })
+    })
+        .then(resp => resp.json())
+        .then(data => {
+            // update like count in the DOM
+            likes.textContent = `${data.likes} Likes`;
+            // update the brewery object with the new data
+            brewery.likes = data.likes;
+        })
+
+});
+
+
+
+            create an img element for the brewery image
+            const image = document.createElement("img");
+            image.src = brewery.image;
+            card.appendChild(image);
+
+
+  let isVis = false;
+  document.querySelector('.tooltip').addEventListener('mouseover', handleMouseover)
+  function handleMouseover() {
+  document.querySelector('.tooltiptext').style.visibility = isVis ? 'hidden' : 'visible'
+  }
+  if(isVis) {
+  document.querySelector('.tooltiptext').style.visibility = 'hidden'
+  }
+  else {
+  document.querySelector('.tooltiptext').style.visibility = 'visible'     
+  }
+  isVis = !isVis;
+*/
+
+
+
+/* document.getElementById('new-brewery-btn').addEventListener('click', () => {
+    //     newBrewFormIsVis = !newBrewFormIsVis
+    //     document.querySelector('.add-brewery-form').style.visibility = newBrewFormIsVis ? 'visible' : 'hidden'
+    // })
+    
+    // //add new brewery form functionality
+    // document.querySelector('.add-brewery-form').addEventListener('submit', e => {
+    //     e.preventDefault()
+    
+    //     const streetEntered = `${e.target['street1'].value} ${e.target['street2'].value}`
+    //     const newBreweryObject = reconcileLocation(fetchFromOSM(streetEntered, e.target['city'].value, e.target['state'].value, e.target['zip'].value))
+    //     newBreweryObject.name = e.target['name'].value
+    //     newBreweryObject.brewery_type = e.target['type'].value
+    //     newBreweryObject.phone = e.target['phone'].value
+    //     newBreweryObject.website_url = e.target['website_url'].value
+    
+    //     addBreweryToDatabase(newBreweryObject)
+    
+    //     //when we are displaying, we'll need to display the 10 closest, and then check to see if any of the new breweries in our local database are closer, then sort all entries (including the new one) and then delete the last child
+    // })
+    
+    // function addBreweryToDatabase(newBreweryObject) {
+    
+    //     debugger;
+    //         // //post new brewery object to our backend
+    //         // fetch('http://localhost:3000/brewery', {
+    //         //     method: 'POST',
+    //         //     headers: {
+    //         //         'Content-Type': 'application/json',
+    //         //         'Accept': 'application/json'
+    //         //     },
+    //         //     body: JSON.stringify(newBreweryObject)
+    //         // })
+    // }
+    */
+   
