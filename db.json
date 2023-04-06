@@ -3,7 +3,7 @@
     {
       "id": 1,
       "breweryId": "dacd265f-723f-4318-bbed-e747655487bb",
-      "content": "What a cute dog!"
+      "content": "This place is great!"
     },
     {
       "id": 2,
@@ -13,17 +13,7 @@
     {
       "id": 3,
       "breweryId": "8d07cc1f-6941-4ee7-8fbe-6ce91eb7b098",
-      "content": "Woof!"
-    },
-    {
-      "breweryId": "8d07cc1f-6941-4ee7-8fbe-6ce91eb7b098",
-      "content": "asdf",
-      "id": 4
-    },
-    {
-      "breweryId": "8d07cc1f-6941-4ee7-8fbe-6ce91eb7b098",
-      "content": "asdf",
-      "id": 5
+      "content": "Love the IPAs here."
     }
   ],
   "likes": [

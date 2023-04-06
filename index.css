@@ -1,14 +1,58 @@
+a, a:hover, a:visited, a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+#current-location {
+    background: rgba(255,255,255,0.8);
+    border-radius: 10px;
+    width: 30vw;
+    padding: 10px;
+    margin: 10px;
+    vertical-align: bottom;
+    text-align: left;
+}
+
+#custom-location {
+    background: rgba(255,255,255,0.8);
+    border-radius: 10px;
+    width: 30vw;
+    padding: 10px;
+    margin: 10px;
+    vertical-align: bottom;
+    text-align: left;
+}
 .card {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    vertical-align: top;
+}
+
+.card-top {
     background-color:lightblue;
     border: 5px solid black;
     padding: 10px;
     margin: 10px;
     width: 250px;
-    /*height: 350px;*/
+    height: 250px;
     display: inline-block;
     vertical-align: top;
     text-align: center;
-  }
+    border-radius: 10px;
+}
+
+.card-bottom {
+    background: rgba(255,255,255,0.8);
+    border-radius: 10px;
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    margin: 10px;
+    vertical-align: bottom;
+    text-align: left;
+}
+
 .add-brewery-form {
     visibility: hidden;
 }
@@ -17,8 +61,21 @@
     display: none;
 }
 
+.brewery-name {
+    position: relative;
+    display: inline-block;
+}
+
 .tooltip {
-    visibility: hidden;
     font-weight: bold;
     font-style: italic;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
 }
